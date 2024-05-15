@@ -52,56 +52,11 @@
         var b = parseInt(colorArray[2]);
         if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
           var color = "rgb(" + r + ", " + g + ", " + b + ")";
-          document.body.style.backgroundColor = color;
+          document.documentElement.style.setProperty('--bgColor', color); // Set CSS variable
           document.getElementById("colorCode").innerText = "Color Code: " + color;
         }
       }
     }
-
-    function search_it() {
-      var tag = document.getElementById("tags").value;
-      var what_search = document.getElementById("search").value;
-      var game_list = document.querySelectorAll(".link");
-      var good_games = document.querySelectorAll(".glink");
-
-      if (what_search === "" && tag == "all") {
-        for (var i = 0; i < game_list.length; i++) {
-          document.getElementById(game_list[i].id).style.display = "flex";
-        }
-        for (var i = 0; i < good_games.length; i++) {
-          document.getElementById(good_games[i].id).style.display = "flex";
-        }
-      } else {
-        var active_list = document.querySelectorAll(".active");
-        for (var i = 0; i < active_list.length; i++) {
-          document.getElementById(active_list[i].id).classList.remove("active");
-        }
-        for (var i = 0; i < game_list.length; i++) {
-          var item = game_list[i].id.toLowerCase();
-          var item2 = document.getElementById(game_list[i].id);
-          if (item.includes(what_search.toLowerCase())) {
-            if (tag == "pop" && item2.classList.contains("pop")) {
-              document.getElementById(game_list[i].id).classList.add("active");
-            } else if (tag == "two" && item2.classList.contains("two")) {
-              document.getElementById(game_list[i].id).classList.add("active");
-            } else if (tag == "stream" && item2.classList.contains("stream")) {
-              document.getElementById(game_list[i].id).classList.add("active");
-            } else if (tag == "bad" && item2.classList.contains("bad")) {
-              document.getElementById(game_list[i].id).classList.add("active");
-            } else if (tag == "all") {
-              document.getElementById(game_list[i].id).classList.add("active");
-            }
-          }
-        }
-      }
-    }
-
-    var search_enter = document.getElementById("search");
-    search_enter.addEventListener("keyup", (event) => {
-      if (event.key === "Enter") {
-        search_it();
-      }
-    });
   </script>
 </head>
 <body> 
